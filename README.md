@@ -1,8 +1,8 @@
 
 
 #### 安装教程
-
-1. php artisan migrate
-2. php artisan serve
+1. composer install
+2. php artisan migrate
+3. php artisan serve
 
 
