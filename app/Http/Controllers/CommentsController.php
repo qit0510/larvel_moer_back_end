@@ -22,7 +22,6 @@ class CommentsController extends Controller
     }
     public function dynamic(){
         $res = Article::where('user_id',Auth::id())->with('comments','user')->orderBy('created_at', 'desc')->get();
-
         return $res;
     }
     public function show($id)

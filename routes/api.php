@@ -9,10 +9,10 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/article/artlist', 'ArticleController@artList');
 Route::get('/hotArticle', 'ArticleController@hot');
 
-Route::get('/life/web_front', 'ArticleController@columnArtList');
-Route::get('/life/Sa', 'ArticleController@columnArtList');
-Route::get('/skill/web_back', 'ArticleController@columnArtList');
-Route::get('/skill/test', 'ArticleController@columnArtList');
+Route::get('/recordsharing/mood', 'ArticleController@columnArtList');
+Route::get('/recordsharing/diary', 'ArticleController@columnArtList');
+Route::get('/recordsharing/live', 'ArticleController@columnArtList');
+Route::get('/Skillsanalysis/algorithmanalysis', 'ArticleController@columnArtList');
 
 Route::get('tag/c++', 'TagController@tagArtList');
 Route::get('tag/css', 'TagController@tagArtList');
@@ -20,7 +20,7 @@ Route::get('tag/java', 'TagController@tagArtList');
 Route::get('/tag', 'TagController@show');
 
 
-Route::get('/article/details/{id}','ArticleController@details');
+Route::get('/article/details/{id}','ArticleController@details'); //文章详情
 
 Route::get('/comment/{article}', 'CommentsController@show');
 Route::get('/parent', 'ParentColumnController@columnsData');
@@ -28,14 +28,15 @@ Route::get('/parent', 'ParentColumnController@columnsData');
 Route::get('/user/check','UserController@check');
 Route::group(['middleware' => 'auth'], function () {
 //artisan
-    Route::get('/article', 'ArticleController@show');
-    Route::get('/article/create', 'ArticleController@getArticleData');
-    Route::post('/article/create', 'ArticleController@store');
-    Route::post('/article/uploadPic', 'ArticleController@uploadPic');
-    Route::get('/initEdit/{article}', 'ArticleController@initEdit');
-    Route::delete('/article/{article}/delete', 'ArticleController@destroy');
-    Route::post('/article/{article}/zan', 'ArticleController@zan');
-    Route::post('/article/{article}/unzan', 'ArticleController@unzan');
+    Route::get('/article', 'ArticleController@show'); //获取所有文章列表
+    Route::get('/getArticle', 'ArticleController@getArticle'); //获取个人文章列表
+    Route::get('/article/create', 'ArticleController@getArticleData'); // 创建文章初始化column和tag
+    Route::post('/article/create', 'ArticleController@store'); //创建文章
+    Route::post('/article/uploadPic', 'ArticleController@uploadPic'); //上传图片
+    Route::get('/initEdit/{article}', 'ArticleController@initEdit'); //初始化编辑
+    Route::delete('/article/{article}/delete', 'ArticleController@destroy'); //删除
+    Route::post('/article/{article}/zan', 'ArticleController@zan'); //点赞
+    Route::post('/article/{article}/unzan', 'ArticleController@unzan'); //取消赞
 //comment
     Route::post('/comment/{article}', 'CommentsController@store');
     Route::get('/dynamic','CommentsController@dynamic');
@@ -58,4 +59,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('getAuth', 'UserController@getAuth');
     Route::post('changeAuth','UserController@changeAuth');
     Route::post('/user/uploadAvatar', 'UserController@uploadAvatar');
+//    Route::get('/user/follow/{user}','UserController@follow');
 });

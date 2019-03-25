@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Follow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,5 +53,12 @@ class UserController extends Controller
         $auth->email = $res['email'];
         $auth->save();
     }
-
+    //关注
+//    public function follow(User $user){
+//        $follow = new Follow();
+//        $follow->uid = Auth::id();
+//        $follow->vid = $user->id;
+//        $follow->save();
+//        return response('成功', 204);
+//    }
 }

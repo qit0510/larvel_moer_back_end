@@ -12,7 +12,6 @@ class ColumnController extends Controller
         $res = Column::With('parentColumn')->orderBy('created_at', 'desc')->get();
         return $res;
     }
-
     public function store(Request $request){
         $res = $this->validate(request(),[
             'title' => 'required|string',
@@ -26,7 +25,6 @@ class ColumnController extends Controller
         $res =Column::with('tags')->find($id);
 //        return $res;
     }
-
     public function destroy(Column $column)
     {
         $res = $column->delete();
